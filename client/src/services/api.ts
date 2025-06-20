@@ -18,9 +18,6 @@ class ApiService {
   private nonce: string;
 
   constructor() {
-    console.log('Initializing ApiService');
-    console.log(window.wpApiSettings?.root)
-    console.log(window.standaloneApiUrl)
     this.baseUrl = (window.wpApiSettings?.root ?? window.standaloneApiUrl )|| '/wp-json/';
     this.nonce = window.wpApiSettings?.nonce || '';
   }
