@@ -1,7 +1,14 @@
 <?php
-class WP_Email_Ticketing_Post_Type {
-    public static function register() {
-        // Register Ticket CPT
+
+declare(strict_types=1);
+
+namespace WPEmailTicketing\Ticket;
+
+class TicketPostType {
+    /**
+     * Register ticket post type and taxonomies.
+     */
+    public static function register(): void {
         register_post_type('ticket', [
             'labels' => [
                 'name' => __('Tickets', 'wp-email-ticketing'),
@@ -16,7 +23,6 @@ class WP_Email_Ticketing_Post_Type {
             'menu_icon' => 'dashicons-tickets',
         ]);
 
-        // Register Status Taxonomy
         register_taxonomy('ticket_status', 'ticket', [
             'labels' => [
                 'name' => __('Ticket Statuses', 'wp-email-ticketing'),
@@ -28,7 +34,6 @@ class WP_Email_Ticketing_Post_Type {
             'hierarchical' => false,
         ]);
 
-        // Register Priority Taxonomy
         register_taxonomy('ticket_priority', 'ticket', [
             'labels' => [
                 'name' => __('Ticket Priorities', 'wp-email-ticketing'),
@@ -41,15 +46,17 @@ class WP_Email_Ticketing_Post_Type {
         ]);
     }
 
-    public static function maybe_insert_default_terms() {
-        // Insert default statuses
+    /**
+     * Insert default taxonomy terms if they don't exist.
+     */
+    public static function maybe_insert_default_terms(): void {
         $statuses = ['Open', 'Pending', 'Closed'];
         foreach ($statuses as $status) {
             if (!term_exists($status, 'ticket_status')) {
                 wp_insert_term($status, 'ticket_status');
             }
         }
-        // Insert default priorities
+        
         $priorities = ['Low', 'Medium', 'High'];
         foreach ($priorities as $priority) {
             if (!term_exists($priority, 'ticket_priority')) {
@@ -58,6 +65,3 @@ class WP_Email_Ticketing_Post_Type {
         }
     }
 }
-
-// Register CPT and taxonomies on init
-add_action('init', ['WP_Email_Ticketing_Post_Type', 'register']); 

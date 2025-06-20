@@ -63,7 +63,16 @@ function wp_email_ticketing_admin_page() {
             'comment_author' => wp_get_current_user()->display_name,
             'comment_approved' => 1,
         ]);
-        WP_Email_Ticketing_Responder::send_reply_notification($ticket_id, $reply, get_current_user_id());
+        $email_provider = new \WPEmailTicketing\Providers\PostmarkProvider();
+        $customer_email = get_post_meta($ticket_id, 'customer_email', true);
+        if ($customer_email) {
+            $subject = sprintf(
+                '[Ticket #%d] %s',
+                $ticket_id,
+                sprintf(__('Your support ticket "%s" has a new reply', 'wp-email-ticketing'), get_the_title($ticket_id))
+            );
+            $email_provider->send_notification($customer_email, $subject, $reply);
+        }
         echo '<div class="updated"><p>' . esc_html__('Reply added.', 'wp-email-ticketing') . '</p></div>';
     }
     
