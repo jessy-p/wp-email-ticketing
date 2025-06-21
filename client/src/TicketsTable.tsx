@@ -36,55 +36,11 @@ const formatDate = (dateString: string) => {
   });
 };
 
-const LoadingSkeleton = () => (
-  <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8">
-    <div className="overflow-x-auto">
-      <table className="w-full">
-        <thead>
-          <tr className="bg-gray-50 border-b border-gray-200">
-            <th className="text-left py-4 px-6 font-semibold text-gray-900 text-sm">ID</th>
-            <th className="text-left py-4 px-6 font-semibold text-gray-900 text-sm">Subject</th>
-            <th className="text-left py-4 px-6 font-semibold text-gray-900 text-sm">Status</th>
-            <th className="text-left py-4 px-6 font-semibold text-gray-900 text-sm">Requester</th>
-            <th className="text-left py-4 px-6 font-semibold text-gray-900 text-sm">Date</th>
-            <th className="text-left py-4 px-6 font-semibold text-gray-900 text-sm">Actions</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-gray-100">
-          {[...Array(5)].map((_, i) => (
-            <tr key={i}>
-              <td className="py-4 px-6">
-                <div className="h-4 bg-gray-200 rounded animate-pulse w-16"></div>
-              </td>
-              <td className="py-4 px-6">
-                <div className="h-4 bg-gray-200 rounded animate-pulse w-48"></div>
-              </td>
-              <td className="py-4 px-6">
-                <div className="h-6 bg-gray-200 rounded-full animate-pulse w-20"></div>
-              </td>
-              <td className="py-4 px-6">
-                <div className="h-4 bg-gray-200 rounded animate-pulse w-32"></div>
-              </td>
-              <td className="py-4 px-6">
-                <div className="h-4 bg-gray-200 rounded animate-pulse w-24"></div>
-              </td>
-              <td className="py-4 px-6">
-                <div className="h-4 bg-gray-200 rounded animate-pulse w-12"></div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-);
-
 const TicketsTable: React.FC<TicketsTableProps> = ({ tickets, onSelectTicket, loading = false }) => {
-  if (loading) {
-    return <LoadingSkeleton />;
-  }
-
   return (
+    <>
+      {loading && <div className="text-center py-8 text-gray-600">Loading tickets...</div>}
+      {!loading && (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8 animate-fade-in">
       <div className="overflow-x-auto">
         <table className="w-full">
@@ -134,6 +90,8 @@ const TicketsTable: React.FC<TicketsTableProps> = ({ tickets, onSelectTicket, lo
         </table>
       </div>
     </div>
+      )}
+    </>
   );
 }
 

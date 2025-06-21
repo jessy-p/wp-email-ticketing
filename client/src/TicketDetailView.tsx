@@ -100,15 +100,10 @@ const TicketDetailView: React.FC<TicketDetailProps> = ({ ticket, handleStatusUpd
           <form
             className="space-y-4"
             onSubmit={async (e) => {
-              e.preventDefault(); // Prevent default form submission behavior
+              e.preventDefault();
               if (reply.trim() && ticket) {
-                try {
-                  await handleSendReply(ticket.id, reply); // Call the API to send the reply
-                  setReply(''); // Clear the reply field on success
-                } catch (error) {
-                  console.error('Failed to send reply:', error);
-                  alert('Failed to send reply. Please try again.'); // Provide user feedback
-                }
+                handleSendReply(ticket.id, reply);
+                setReply('');
               }
             }}
           >

@@ -49,7 +49,6 @@ function App() {
   const handleStatusUpdate = async (ticketId: string, status: string) => {
     try {
       await apiService.updateTicketStatus(ticketId, status);
-      // Refresh tickets and detail
       await fetchTickets();
       if (selectedTicketDetail && selectedTicketDetail.id === ticketId) {
         const updatedDetail = await apiService.getTicketDetails(ticketId);
@@ -64,7 +63,6 @@ function App() {
   const handleSendReply = async (ticketId: string, message: string) => {
     try {
       await apiService.sendReply(ticketId, message);
-      // Refresh the ticket detail to show new reply
       if (selectedTicketDetail && selectedTicketDetail.id === ticketId) {
         const updatedDetail = await apiService.getTicketDetails(ticketId);
         setSelectedTicketDetail(updatedDetail);
