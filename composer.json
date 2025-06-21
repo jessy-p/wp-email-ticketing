@@ -1,5 +1,5 @@
 {
-    "name": "wp-email-ticketing",
+    "name": "jessy-p/wp-email-ticketing",
     "description": "WordPress plugin for email-based ticketing system.",
     "type": "project",
     "require": {

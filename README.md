@@ -38,7 +38,7 @@ Download the latest plugin zip file from the [GitHub Releases](https://github.co
 
 ### Development Installation
 
-For local installation, 
+For local installation: 
 
 ```
 git clone https://github.com/jessy-p/wp-email-ticketing.git
@@ -81,6 +81,9 @@ Email validation, content length limits, and sanitization for secure webhook pay
 * **Frontend Stack**  
 React with TypeScript, using Vite for fast dev builds.
 
+* **Code Quality Standards**  
+PHP CodeSniffer with PSR-12 standards for consistent PHP code style.
+
 ## Configuration
 
 ### Postmark Setup
@@ -102,7 +105,7 @@ React with TypeScript, using Vite for fast dev builds.
 3. **Test Agent Reply** : Reply to the ticket from the Ticketing dashboard and the customer should receive your response via email (via wp_mail).
 4. **Test Customer Reply**: Customer reply to the agent response should appear as an update to the existing ticket.
 
-### Webhook Payload Format
+### Local Testing
 
 To test locally without Postmark, use curl to simulate the parsed email JSON arriving at the webhook URL from PostMark
 

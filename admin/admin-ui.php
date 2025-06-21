@@ -45,8 +45,10 @@ add_action('admin_enqueue_scripts', function($hook) {
 });
 
 function wp_email_ticketing_admin_page() {
-    // Handle form submissions first
     if (isset($_POST['wp_email_ticketing_update_status']) && isset($_POST['wp_email_ticketing_status']) && isset($_GET['ticket_id'])) {
+        if (!wp_verify_nonce($_POST['ticket_nonce'], 'ticket_action')) {
+            wp_die('Security check failed');
+        }
         $ticket_id = intval($_GET['ticket_id']);
         $new_status = sanitize_text_field($_POST['wp_email_ticketing_status']);
         wp_set_object_terms($ticket_id, $new_status, 'ticket_status');
@@ -54,6 +56,9 @@ function wp_email_ticketing_admin_page() {
     }
     
     if (isset($_POST['wp_email_ticketing_add_reply']) && !empty($_POST['wp_email_ticketing_reply']) && isset($_GET['ticket_id'])) {
+        if (!wp_verify_nonce($_POST['ticket_nonce'], 'ticket_action')) {
+            wp_die('Security check failed');
+        }
         $ticket_id = intval($_GET['ticket_id']);
         $reply = sanitize_textarea_field($_POST['wp_email_ticketing_reply']);
         wp_insert_comment([

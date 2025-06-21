@@ -35,7 +35,7 @@ export interface TicketsResponse {
   per_page: number;
 }
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;
