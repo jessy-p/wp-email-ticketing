@@ -23,7 +23,9 @@ class WebhookController
     public function register_routes(): void
     {
         register_rest_route(
-            'ticketing/v1', '/webhook', [
+            'ticketing/v1',
+            '/webhook',
+            [
             'methods' => 'POST',
             'callback' => [$this, 'handle_incoming_email'],
             'permission_callback' => [self::class, 'ticket_permission_callback'],
@@ -51,7 +53,7 @@ class WebhookController
     {
         $data = $request->get_json_params();
         $email_message = $this->email_provider->parse_incoming_email($data);
-        
+
         if (!$this->validate_email_message($email_message)) {
             return rest_ensure_response(['success' => true, 'skipped' => 'invalid_email']);
         }

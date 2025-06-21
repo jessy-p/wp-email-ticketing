@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace WPEmailTicketing\Ticket;
 
-class TicketPostType {
+class TicketPostType
+{
     /**
      * Register ticket post type and taxonomies.
      */
-    public static function register(): void {
+    public static function register(): void
+    {
         register_post_type('ticket', [
             'labels' => [
                 'name' => __('Tickets', 'wp-email-ticketing'),
@@ -49,14 +51,15 @@ class TicketPostType {
     /**
      * Insert default taxonomy terms if they don't exist.
      */
-    public static function maybe_insert_default_terms(): void {
+    public static function maybe_insert_default_terms(): void
+    {
         $statuses = ['Open', 'Pending', 'Closed'];
         foreach ($statuses as $status) {
             if (!term_exists($status, 'ticket_status')) {
                 wp_insert_term($status, 'ticket_status');
             }
         }
-        
+
         $priorities = ['Low', 'Medium', 'High'];
         foreach ($priorities as $priority) {
             if (!term_exists($priority, 'ticket_priority')) {

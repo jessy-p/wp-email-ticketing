@@ -7,17 +7,20 @@ namespace WPEmailTicketing\RestApi;
 use WPEmailTicketing\Providers\PostmarkProvider;
 use WPEmailTicketing\Providers\EmailProviderInterface;
 
-class TicketController {
+class TicketController
+{
     private EmailProviderInterface $email_provider;
 
-    public function __construct(EmailProviderInterface $email_provider) {
+    public function __construct(EmailProviderInterface $email_provider)
+    {
         $this->email_provider = $email_provider;
     }
 
     /**
      * Register ticket management REST API routes.
      */
-    public function register_routes(): void {
+    public function register_routes(): void
+    {
         register_rest_route('ticketing/v1', '/tickets', [
             'methods' => 'GET',
             'callback' => [$this, 'handle_list_tickets'],
@@ -46,14 +49,16 @@ class TicketController {
     /**
      * Permission callback for ticket endpoints.
      */
-    public static function ticket_permission_callback(): bool {
+    public static function ticket_permission_callback(): bool
+    {
         return current_user_can('edit_others_posts');
     }
 
     /**
      * List tickets with filtering and pagination.
      */
-    public function handle_list_tickets($request) {
+    public function handle_list_tickets($request)
+    {
         $args = [
             'post_type' => 'ticket',
             'post_status' => 'any',
@@ -98,7 +103,8 @@ class TicketController {
     /**
      * Get detailed ticket information including conversation.
      */
-    public function handle_ticket_details($request) {
+    public function handle_ticket_details($request)
+    {
         $id = intval($request['id']);
         $post = get_post($id);
 
@@ -108,9 +114,9 @@ class TicketController {
 
         $status = wp_get_post_terms($id, 'ticket_status', ['fields' => 'names']);
         $status = !empty($status) ? $status[0] : '';
-        
+
         $priority = wp_get_post_terms($id, 'ticket_priority', ['fields' => 'names']);
-        
+
         $attachments = get_posts([
             'post_type' => 'attachment',
             'post_parent' => $id,
@@ -162,7 +168,8 @@ class TicketController {
     /**
      * Update ticket status.
      */
-    public function handle_update_status($request) {
+    public function handle_update_status($request)
+    {
         $id = intval($request['id']);
         $post = get_post($id);
 
@@ -187,7 +194,8 @@ class TicketController {
     /**
      * Send reply to ticket and notify customer.
      */
-    public function handle_send_reply($request) {
+    public function handle_send_reply($request)
+    {
         $id = intval($request['id']);
         $post = get_post($id);
 

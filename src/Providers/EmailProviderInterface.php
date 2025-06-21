@@ -6,7 +6,8 @@ namespace WPEmailTicketing\Providers;
 
 use WPEmailTicketing\DTO\EmailMessage;
 
-interface EmailProviderInterface {
+interface EmailProviderInterface
+{
     /**
      * Parse incoming webhook data into standardized EmailMessage.
      *
