@@ -49,7 +49,7 @@ cd client && npm install && npm run build
 
 ## Technical Highlights
 
-* **Webhook-First Architecture** - Real-time email processing without polling or cron jobs for instant ticket creation.
+* **Event-Driven Email Processing** - Real-time email processing via webhooks without polling or cron jobs for instant ticket creation.
 
 * **WordPress Integration Patterns**  
    - Leverages Custom Post Types for Tickets
