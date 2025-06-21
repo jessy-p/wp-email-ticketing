@@ -69,7 +69,7 @@ cd client && npm install && npm run build
    - Clean namespace organization with single-responsibility classes
 
 * **WordPress REST API Endpoints**  
-   - Authentication via Application Passwords  
+   - Webhook URL authentication using Application Password 
    - Authorization based on Editor role capabilities
 
 * **Input Validation & Security** - Email validation, content length limits, and sanitization for secure webhook payload processing.
