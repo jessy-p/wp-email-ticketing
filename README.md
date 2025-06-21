@@ -49,8 +49,7 @@ cd client && npm install && npm run build
 
 ## Architecture Overview
 
-* **PSR-4 Autoloading**  
-Proper namespace organization for maintainable and scalable code.
+* **PSR-4 Autoloading** - Proper namespace organization for maintainable and scalable code.
 
 * **WordPress Integration Patterns**  
    - Leverages Custom Post Types for Tickets
@@ -59,8 +58,7 @@ Proper namespace organization for maintainable and scalable code.
    - Custom taxonomies for ticket status and priority management
    - Structured metadata storage for efficient retrieval
 
-* **Interface-Driven Design** (`EmailProviderInterface`)  
-Abstracts email provider logic for extensibility, can easily swap Postmark with SendGrid, Mailgun, or custom code that parses email to JSON.
+* **Interface-Driven Design** - `EmailProviderInterface` abstracts email provider logic for extensibility, can easily swap Postmark with SendGrid, Mailgun, or custom code that parses email to JSON.
 
 * **Separation of Concerns**
    - Controllers handle HTTP requests and routing
@@ -72,17 +70,13 @@ Abstracts email provider logic for extensibility, can easily swap Postmark with 
    - Authentication via Application Passwords  
    - Authorization based on Editor role capabilities
 
-* **Webhook-First Architecture**   
-Real-time email processing without polling or cron jobs for instant ticket creation.
+* **Webhook-First Architecture** - Real-time email processing without polling or cron jobs for instant ticket creation.
 
-* **Input Validation & Security**
-Email validation, content length limits, and sanitization for secure webhook payload processing.
+* **Input Validation & Security** - Email validation, content length limits, and sanitization for secure webhook payload processing.
 
-* **Frontend Stack**  
-React with TypeScript, using Vite for fast dev builds.
+* **Frontend Stack** - React with TypeScript, using Vite for fast dev builds.
 
-* **Code Quality Standards**  
-PHP CodeSniffer with PSR-12 standards for consistent PHP code style.
+* **Code Quality Standards** - PHP CodeSniffer with PSR-12 standards for consistent PHP code style.
 
 ## Configuration
 
