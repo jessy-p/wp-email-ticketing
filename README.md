@@ -47,9 +47,9 @@ composer install
 cd client && npm install && npm run build
 ```
 
-## Architecture Overview
+## Technical Highlights
 
-* **PSR-4 Autoloading** - Proper namespace organization for maintainable and scalable code.
+* **Webhook-First Architecture** - Real-time email processing without polling or cron jobs for instant ticket creation.
 
 * **WordPress Integration Patterns**  
    - Leverages Custom Post Types for Tickets
@@ -57,6 +57,8 @@ cd client && npm install && npm run build
    - Email attachments handled via the WordPress Media Library
    - Custom taxonomies for ticket status and priority management
    - Structured metadata storage for efficient retrieval
+
+* **PSR-4 Autoloading** - Proper namespace organization for maintainable and scalable code.
 
 * **Interface-Driven Design** - `EmailProviderInterface` abstracts email provider logic for extensibility, can easily swap Postmark with SendGrid, Mailgun, or custom code that parses email to JSON.
 
@@ -69,8 +71,6 @@ cd client && npm install && npm run build
 * **WordPress REST API Endpoints**  
    - Authentication via Application Passwords  
    - Authorization based on Editor role capabilities
-
-* **Webhook-First Architecture** - Real-time email processing without polling or cron jobs for instant ticket creation.
 
 * **Input Validation & Security** - Email validation, content length limits, and sanitization for secure webhook payload processing.
 
